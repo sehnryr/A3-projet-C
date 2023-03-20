@@ -1,6 +1,9 @@
 #include <string.h>
 #include "define.h"
 
-// Pensez à bien proteger vos .h avec des ifndef
+#ifndef VISUALISATIONC_H
+#define VISUALISATIONC_H
 
 void visualisationC(float puissance_f);
+
+#endif // VISUALISATIONC_H

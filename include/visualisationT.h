@@ -1,6 +1,9 @@
 #include <string.h>
 #include "define.h"
 
-// Pensez à bien proteger vos .h avec des ifndef
+#ifndef VISUALISATIONT_H
+#define VISUALISATIONT_H
 
 void visualisationT(temp_t myTemp);
+
+#endif // VISUALISATIONT_H

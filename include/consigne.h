@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "define.h"
 
-// Pensez à bien proteger vos .h avec des ifndef
+#ifndef CONSIGNE_H
+#define CONSIGNE_H
 
 float consigne(float thermostatPrec_f);
+
+#endif // CONSIGNE_H
