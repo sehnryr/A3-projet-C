@@ -29,9 +29,6 @@ int main()
     FT_HANDLE ftHandle;
     FT_STATUS ftStatus;
     ftStatus = FT_Open(0, &ftHandle); // Might use FT_OpenEx() instead
-    ftStatus = FT_SetBaudRate(ftHandle, FT_BAUD_115200);
-    ftStatus = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE);
-    ftStatus = FT_SetFlowControl(ftHandle, FT_FLOW_NONE, 0, 0);
 
     // Vérification de l'initialisation
     if (ftStatus != FT_OK)
@@ -39,6 +36,11 @@ int main()
         printf("Erreur d'initialisation de la communication USB !\n");
         return EXIT_FAILURE;
     }
+
+    // Configuration de la communication USB
+    ftStatus = FT_SetBaudRate(ftHandle, FT_BAUD_115200);
+    ftStatus = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE);
+    ftStatus = FT_SetFlowControl(ftHandle, FT_FLOW_NONE, 0, 0);
 
     // Boucle de régulation
     while (1)
