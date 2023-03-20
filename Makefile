@@ -22,7 +22,7 @@ FTD2XX = libraries/ftd2xx
 ifeq ($(OS),Windows_NT)
 	FTD2XX_LIB = $(FTD2XX)/ftd2xx.lib
 else
-	FTD2XX_LIB = $(FTD2XX)/libftd2xx.so.1.4.27
+	FTD2XX_LIB = $(FTD2XX)/libftd2xx.a
 endif
 
 # Get all .c files in src and its subdirectories
