@@ -1,5 +1,3 @@
-#define DISPLAY_DEBUG
-
 #include <stdio.h>
 #include <unistd.h>
 #include "consigne.h"
