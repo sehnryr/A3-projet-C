@@ -48,8 +48,8 @@ float regulation(
         else
         {
             // Terme intégral
-            *I += Ki * *old_e * DELTA_T / 2;
-            *I += Ki * e * DELTA_T / 2;
+            *I += Ki * *old_e * DELTA_T / 2; // Première moitié du trapèze
+            *I += Ki * e * DELTA_T / 2;      // Deuxième moitié du trapèze
         }
 
         // Terme dérivé
