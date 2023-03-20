@@ -1,4 +1,3 @@
-
 float testConsigne();
 float testVisualisationT();
 float testVisualisationC();
