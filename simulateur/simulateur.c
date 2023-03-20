@@ -6,7 +6,7 @@
 #include <unistd.h>
 #endif
 
-#define CTH  73746.9
+#define CTH 73746.9
 #define RGF_A 0.00686
 #define RGF_B 0.01003
 #define RGF_C 0.01155
@@ -26,62 +26,65 @@ void msleep(int ms)
 /*******************************/
 /* Construction des parametres	*/
 /**********************************/
-   struct simParam_s* simConstruct(temp_t temperature){
-     /* Variables */
-      struct simParam_s* param_ps;
-      // int i=0;
-   
-      /* Allocation m�moire*/
-      param_ps = malloc(sizeof(struct simParam_s));
-   
-      /*initialisation de chaque champ*/
-      param_ps->tempInt_f = temperature.interieure;
-      param_ps->tempExt_f = temperature.exterieure;
-      param_ps->rgf = RGF_A;
-      param_ps->kr = (CTH*param_ps->rgf)/DELTA_T;
-      param_ps->trace_pf = fopen("trace.txt","w");
-      param_ps->compteur_i = 0;
-      
-      /* intialisation fichier trace*/
-      if( param_ps->trace_pf == NULL){
-         perror("Erreur dans simConstruct() : impossible d'ouvrir le fichier trace.txt\n");
-         exit(EXIT_FAILURE);
-      }
-      fprintf(param_ps->trace_pf,"%f \t %f \t %f \t %f\n",param_ps->compteur_i*DELTA_T,0.0,param_ps->tempExt_f,param_ps->tempInt_f);      
-   	return param_ps;
-   }
+struct simParam_s *simConstruct(temp_t temperature)
+{
+    /* Variables */
+    struct simParam_s *param_ps;
+    // int i=0;
 
- temp_t simCalc(float puissance, struct simParam_s* param_ps){
-     
-      temp_t temperature;
-      temperature.exterieure = param_ps->tempExt_f;
+    /* Allocation m�moire*/
+    param_ps = malloc(sizeof(struct simParam_s));
 
-      if((puissance > 100)|| (puissance < 0)){
-         /* puissance erronee */
-         printf("Simulateur : erreur de puissance\n");
-          temperature.interieure = param_ps->tempInt_f;
+    /*initialisation de chaque champ*/
+    param_ps->tempInt_f = temperature.interieure;
+    param_ps->tempExt_f = temperature.exterieure;
+    param_ps->rgf = RGF_A;
+    param_ps->kr = (CTH * param_ps->rgf) / DELTA_T;
+    param_ps->trace_pf = fopen("trace.txt", "w");
+    param_ps->compteur_i = 0;
 
-      }else{
+    /* intialisation fichier trace*/
+    if (param_ps->trace_pf == NULL)
+    {
+        perror("Erreur dans simConstruct() : impossible d'ouvrir le fichier trace.txt\n");
+        exit(EXIT_FAILURE);
+    }
+    fprintf(param_ps->trace_pf, "%f \t %f \t %f \t %f\n", param_ps->compteur_i * DELTA_T, 0.0, param_ps->tempExt_f, param_ps->tempInt_f);
+    return param_ps;
+}
 
-         /* Simulateur	 */
-         temperature.interieure = (param_ps->tempExt_f + param_ps->rgf*PUISS_MAX * ((float)puissance / 100.0) + ((float)param_ps->tempInt_f*param_ps->kr))/(param_ps->kr+1.0);
-      }
-   	/* Ecriture des donnees dans le fichier trace.txt */
-      printf("Simulateur : P=%g%%, Temp ext.=%g deg, Temp int.=%g deg\n",puissance,param_ps->tempExt_f,param_ps->tempInt_f);
-      msleep(DELTA_T_SIM_MS);//la simulation dure 4ms et repr�sente en r�alit� 10s
-      param_ps->compteur_i++;
-      fprintf(param_ps->trace_pf,"%f \t %f \t %f \t %f\n",param_ps->compteur_i*DELTA_T,puissance,param_ps->tempExt_f,param_ps->tempInt_f);
+temp_t simCalc(float puissance, struct simParam_s *param_ps)
+{
 
+    temp_t temperature;
+    temperature.exterieure = param_ps->tempExt_f;
 
-      /*sauvegarde de la temperature*/
-      param_ps->tempInt_f = temperature.interieure;
+    if ((puissance > 100) || (puissance < 0))
+    {
+        /* puissance erronee */
+        printf("Simulateur : erreur de puissance\n");
+        temperature.interieure = param_ps->tempInt_f;
+    }
+    else
+    {
 
-      return temperature;
-   }
+        /* Simulateur	 */
+        temperature.interieure = (param_ps->tempExt_f + param_ps->rgf * PUISS_MAX * ((float)puissance / 100.0) + ((float)param_ps->tempInt_f * param_ps->kr)) / (param_ps->kr + 1.0);
+    }
+    /* Ecriture des donnees dans le fichier trace.txt */
+    printf("Simulateur : P=%g%%, Temp ext.=%g deg, Temp int.=%g deg\n", puissance, param_ps->tempExt_f, param_ps->tempInt_f);
+    msleep(DELTA_T_SIM_MS); // la simulation dure 4ms et repr�sente en r�alit� 10s
+    param_ps->compteur_i++;
+    fprintf(param_ps->trace_pf, "%f \t %f \t %f \t %f\n", param_ps->compteur_i * DELTA_T, puissance, param_ps->tempExt_f, param_ps->tempInt_f);
 
+    /*sauvegarde de la temperature*/
+    param_ps->tempInt_f = temperature.interieure;
 
-   void simDestruct(struct simParam_s* param_ps){
-      fclose(param_ps->trace_pf);
-      free(param_ps);
-   }
+    return temperature;
+}
 
+void simDestruct(struct simParam_s *param_ps)
+{
+    fclose(param_ps->trace_pf);
+    free(param_ps);
+}
