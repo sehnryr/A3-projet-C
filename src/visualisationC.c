@@ -37,7 +37,7 @@ void visualisationC(float puissance_f)
       exit(1);
    }
 
-   char tChauffe[5] = {0}; // Témoin de chauffe
+   char tChauffe[6] = {0}; // Témoin de chauffe
    float tempExt;          // Température extérieure
    float tempInt;          // Température intérieure
 
