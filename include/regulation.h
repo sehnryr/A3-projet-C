@@ -5,9 +5,11 @@
 #ifndef REGULATION_H
 #define REGULATION_H
 
-#define Kp 1.0
-#define Ki 0.1
-#define Kd 0.1
+#define DELTA_T 10.0 // Durée d'un pas de régulation en secondes
+
+#define Kp 1.1
+#define Ki 0.2
+#define Kd 0.15
 
 /// Ancienne valeur de l'écart
 static float old_e = 0;
