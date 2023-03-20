@@ -672,7 +672,7 @@ float testRegulationPID()
     cmd = cmd_target + 100;
 
     attendu[0] = 0.55;
-    for (i = 1; i < nTT; i++)
+    for (i = 1; i < nTTb; i++)
     {
         attendu[i] = attendu[i - 1] + 1;
     }
