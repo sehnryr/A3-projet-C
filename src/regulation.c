@@ -11,6 +11,7 @@
  * @param old_consigne Ancienne consigne
  * @param old_e Ancien écart
  * @param I Terme intégral
+ * @return Commande de chauffage
  */
 float regulation(
     int regul,
