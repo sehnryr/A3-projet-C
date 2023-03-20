@@ -47,4 +47,4 @@ zip:
     src \
     test \
     Makefile \
-	README.md \
+	README.md
