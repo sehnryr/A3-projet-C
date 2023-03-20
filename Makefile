@@ -69,6 +69,7 @@ usb: $(BUILD_DIR)/test_usb $(OBJ_FILES)
 zip:
 	@zip -r sources_AA_YM.zip \
 	include \
+	libraries \
 	src \
 	test \
 	Makefile \
