@@ -36,18 +36,18 @@ void visualisationT(temp_t myTemp)
     }
 
     char tChauffe[6] = {0}; // Témoin de chauffe
-    float tempExt;          // Température extérieure
     float tempInt;          // Température intérieure
+    float tempExt;          // Température extérieure
 
     // Lecture des données du fichier data.txt
-    fscanf(fp, "%s\n%f\n%f\n", tChauffe, &tempExt, &tempInt);
+    fscanf(fp, "%s\n%f\n%f\n", tChauffe, &tempInt, &tempExt);
     fclose(fp); // Fermeture du fichier data.txt après lecture
 
     // Ouverture du fichier data.txt en écriture
     fp = fopen("data.txt", "w");
 
     // Ecriture des données dans le fichier data.txt
-    fprintf(fp, "%s\n%f\n%f\n", tChauffe, myTemp.exterieure, myTemp.interieure);
+    fprintf(fp, "%s\n%f\n%f\n", tChauffe, myTemp.interieure, myTemp.exterieure);
     fclose(fp); // Fermeture du fichier data.txt après écriture
 
     // Suppression du fichier .verrouData après manipulation du fichier data.txt
