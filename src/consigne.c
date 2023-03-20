@@ -1,6 +1,12 @@
 #include <unistd.h>
 #include "consigne.h"
 
+/**
+ * @brief Récupère la consigne de température
+ *
+ * @param thermostatPrec_f Ancienne consigne
+ * @return float Consigne de température interieure
+ */
 float consigne(float thermostatPrec_f)
 {
 
