@@ -78,5 +78,15 @@ int main()
     visualisationC(puissance);
     commande(ftHandle, puissance);
 
+    // Fermeture de la communication USB
+    ftStatus = FT_Close(ftHandle);
+
+    // Vérification de la fermeture
+    if (ftStatus != FT_OK)
+    {
+        printf("Erreur de fermeture de la communication USB !\n");
+        return EXIT_FAILURE;
+    }
+
     return EXIT_SUCCESS;
 }
