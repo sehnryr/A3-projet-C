@@ -12,7 +12,7 @@ float consigne(float thermostatPrec_f)
    if (fopen("../IHM python/.verrouConsigne", "r") == NULL)
    {
       printf("Impossible d'ouvrir consigne.txt, le fichier est en cours d'utilisation. Le programme va se fermer. \n");
-      return;
+      return thermostatPrec_f;
    }
    // s'il n'y en a pas qui existe, je crée un fichier .verrouConsigne qui indique que le fichier "consigne.txt" est en cours de lecture
    else
