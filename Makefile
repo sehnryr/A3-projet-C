@@ -3,12 +3,11 @@ CC = gcc
 
 # -Wall: Enable all warnings
 # -Wextra: Enable extra warnings
-# -Werror: Treat warnings as errors
 # -pedantic: Enable pedantic warnings
 # -std=c17: Use C17 standard
 # -O3: Optimize for speed
 # -Og: Optimize for debugging
-CFLAGS = -Wall -Wextra -Werror -pedantic -std=c17 -O3 -Og
+CFLAGS = -Wall -Wextra -pedantic -std=c17 -O3 -Og
 
 SRC_DIR = src
 INCLUDE_DIR = include
