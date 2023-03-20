@@ -43,6 +43,13 @@ float consigne(float thermostatPrec_f)
    // je lis le fichier "consigne.txt" et je stocke la valeur obtenu dans la variable thermostat_f
    fscanf(fp, "%f %f", &thermostat_f);
 
+   // je ferme le fichier "consigne.txt"
+   fclose(fp);
+
+   // je supprime le fichier .verrouConsigne car je ne l'utilise plus
+   remove("../IHM python/.verrouConsigne");
+
+   // je retourne la valeur de la consigne
    return thermostat_f;
 >>>>>>> 8d05de5 (update consigne.c)
 }
