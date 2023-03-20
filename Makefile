@@ -33,10 +33,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
 
-.PHONY: clean simulateur
+.PHONY: clean
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
-
-simulateur:
-	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $(BUILD_DIR)/simulateur $(wildcard simulateur/*.c) -Isimulateur -I$(INCLUDE_DIR)

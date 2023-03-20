@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "visualisationt.h": "c"
+        "visualisationt.h": "c",
+        "simulateur.h": "c",
+        "visualisationc.h": "c"
     }
 }
