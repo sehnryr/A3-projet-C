@@ -39,5 +39,4 @@ autotests: $(TARGET) $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -lstdc++fs -I$(INCLUDE_DIR)
 
 simulation: $(TARGET) $(OBJ_FILES)
-	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
