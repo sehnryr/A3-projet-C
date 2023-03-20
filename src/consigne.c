@@ -16,7 +16,7 @@ float consigne(float thermostatPrec_f)
     if (access(".verrouConsigne", F_OK) != -1)
     {
         // printf("Impossible d'ouvrir consigne.txt, le fichier est en cours d'utilisation.\n");
-        return;
+        return thermostatPrec_f;
     }
     // Sinon, création d'un fichier .verrouConsigne qui indique que le fichier
     // consigne.txt est en cours de lecture par ce programme.
