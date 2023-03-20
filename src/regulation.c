@@ -51,8 +51,6 @@ float regulation(
         float D = Kd * (e - *old_e) / DELTA_T;
         *old_e = e;
 
-        // printf("P = %f, I = %f, D = %f (e = %f, temp = %f, consigne = %f)\n", P, I, D, e, temp, consigne);
-
         // Commande
         float cmd = P + *I + D;
 
