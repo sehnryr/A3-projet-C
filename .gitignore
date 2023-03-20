@@ -58,7 +58,7 @@ build/*
 .vscode/
 
 # Project files
-consigne.txt
-data.txt
+*.txt
+**/*.txt
 .verrouConsigne
 .verrouData
