@@ -5,7 +5,7 @@ CC = gcc
 # -Wextra: Enable extra warnings
 # -Werror: Treat warnings as errors
 # -pedantic: Enable pedantic warnings
-# -std=c99: Use C99 standard
+# -std=c17: Use C17 standard
 # -O3: Optimize for speed
 # -Og: Optimize for debugging
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c17 -O3 -Og
