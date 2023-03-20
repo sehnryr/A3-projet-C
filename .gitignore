@@ -56,3 +56,9 @@ build/*
 
 # VS Code
 .vscode/
+
+# Project files
+consigne.txt
+data.txt
+.verrouConsigne
+.verrouData

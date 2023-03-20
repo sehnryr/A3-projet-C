@@ -6,7 +6,7 @@ void visualisationT(temp_t myTemp)
     
     // si le fichier .verrouData existe, le fichier data.txt est en cours d'utilisation donc je quitte la fonction
     // la fonction fopen renvoie NULL si le fichier n'existe pas
-    if(fopen("../IHM python/.verrouData", "r")==NULL) 
+    if(fopen("../.verrouData", "r")==NULL) 
     {
         printf("Impossible d'ouvrir data.txt, le fichier est en cours d'utilisation. Le programme va se fermer. \n");
         return;
@@ -15,7 +15,7 @@ void visualisationT(temp_t myTemp)
     else 
     {
         FILE *fp2;
-        fp2 = fopen("../IHM python/.verrouData", "w");
+        fp2 = fopen("../.verrouData", "w");
         fclose(fp2);
     }
         
@@ -23,7 +23,7 @@ void visualisationT(temp_t myTemp)
     FILE *fp;
 
     // je lis le fichier data.txt
-    fp = fopen("../IHM python/data.txt", "r");
+    fp = fopen("../data.txt", "r");
 
     // si je n'arrive pas à ouvrir le fichier data.txt, je quitte le programme
     if (fp == NULL)
@@ -49,7 +49,7 @@ void visualisationT(temp_t myTemp)
     fclose(fp);
 
     // j'ouvre le fichier data.txt en mode écriture
-    fp = fopen("../IHM python/data.txt", "w");
+    fp = fopen("../data.txt", "w");
 
     // je stocke les valeurs pris en argument dans la fonction dans le fichier data.txt, ainsi que le témoin de chauffe qui ne change pas
     fprintf(fp, "%s %f %f", tChauffe, myTemp.exterieure, myTemp.interieure);
@@ -58,5 +58,5 @@ void visualisationT(temp_t myTemp)
     fclose(fp);
 
     // je supprime le fichier .verrouData car je ne l'utilise plus
-    remove("../IHM python/.verrouData");
+    remove("../.verrouData");
 }

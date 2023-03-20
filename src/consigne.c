@@ -9,7 +9,7 @@ float consigne(float thermostatPrec_f)
 
    // si le fichier .verrouConsigne existe, le fichier "consigne.txt" est en cours d'utilisation donc je quitte la fonction
    // la fonction fopen renvoie NULL si le fichier n'existe pas
-   if (fopen("../IHM python/.verrouConsigne", "r") == NULL)
+   if (fopen("../.verrouConsigne", "r") == NULL)
    {
       printf("Impossible d'ouvrir consigne.txt, le fichier est en cours d'utilisation. Le programme va se fermer. \n");
       return thermostatPrec_f;
@@ -18,7 +18,7 @@ float consigne(float thermostatPrec_f)
    else
    {
       FILE *fp2;
-      fp2 = fopen("../IHM python/.verrouConsigne", "w");
+      fp2 = fopen("../.verrouConsigne", "w");
       fclose(fp2);
    }
 
@@ -26,7 +26,7 @@ float consigne(float thermostatPrec_f)
    FILE *fp;
 
    // je lis le fichier "consigne.txt"
-   fp = fopen("../IHM python/consigne.txt", "r");
+   fp = fopen("../consigne.txt", "r");
 
    // si je n'arrive pas à ouvrir le fichier "consigne.txt", je quitte le programme
    if (fp == NULL)
@@ -42,7 +42,7 @@ float consigne(float thermostatPrec_f)
    fclose(fp);
 
    // je supprime le fichier .verrouConsigne car je ne l'utilise plus
-   remove("../IHM python/.verrouConsigne");
+   remove("../.verrouConsigne");
 
    // je retourne la valeur de la consigne
    return thermostat_f;
