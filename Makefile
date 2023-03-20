@@ -8,7 +8,7 @@ CC = gcc
 # -std=c99: Use C99 standard
 # -O3: Optimize for speed
 # -Og: Optimize for debugging
-CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O3 -Og
+CFLAGS = -Wall -Wextra -Werror -pedantic -std=c17 -O3 -Og
 
 SRC_DIR = src
 INCLUDE_DIR = include
