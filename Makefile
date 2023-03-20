@@ -31,7 +31,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
 
-.PHONY: clean autotests simulation
+.PHONY: clean autotests simulation zip
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
 
@@ -40,3 +40,10 @@ autotests: $(TARGET) $(OBJ_FILES)
 
 simulation: $(TARGET) $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
+
+zip:
+	@zip -r sources_AA_YM.zip \
+    include \
+    src \
+    test \
+    Makefile
