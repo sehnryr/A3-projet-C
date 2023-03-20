@@ -46,4 +46,5 @@ zip:
     include \
     src \
     test \
-    Makefile
+    Makefile \
+	README.md \
