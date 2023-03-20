@@ -1,3 +1,5 @@
+#define DISPLAY_DEBUG
+
 #include <stdio.h>
 #include <unistd.h>
 #include "consigne.h"
@@ -684,7 +686,7 @@ float testRegulationPID()
         {
             faux_comparaison_attendu_a = 1;
         }
-        printf("commande = %f attendu = %f\n",cmd, attendu[i]);
+        // printf("commande = %f attendu = %f\n",cmd, attendu[i]);
     }
 
     if (faux_comparaison_attendu_a == 1)
