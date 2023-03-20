@@ -11,15 +11,6 @@
 #define Ki 0.2
 #define Kd 0.15
 
-/// Ancienne valeur de l'écart
-static float old_e = 0;
-
-/// Ancienne valeur de la commande
-static float old_cmd = 0;
-
-/// Terme intégral de la régulation PID
-static float I = 0;
-
 /// Type d'une consigne
 enum REGULATION_TYPE
 {
@@ -27,7 +18,13 @@ enum REGULATION_TYPE
     PID = 2           /// Proportionnel Intégral Dérivé
 };
 
-float regulation(int regul, float temp, float consigne);
+float regulation(
+    int regul,
+    float temp,
+    float consigne,
+    float *old_consigne,
+    float *old_e,
+    float *I);
 float regulationTest(int regul, float consigne, float *tabT, int nT);
 
 #endif // REGULATION_H

@@ -9,7 +9,13 @@
  * @param temp Température intérieure
  * @param consigne Consigne de température intérieure à atteindre
  */
-float regulation(int regul, float temp, float consigne)
+float regulation(
+    int regul,
+    float temp,
+    float consigne,
+    float *old_consigne,
+    float *old_e,
+    float *I)
 {
     switch (regul)
     {
@@ -28,27 +34,27 @@ float regulation(int regul, float temp, float consigne)
         float P = Kp * e;
 
         // Si la consigne a changé, on réinitialise les termes intégral et dérivé
-        if (consigne != old_cmd)
+        if (consigne != *old_consigne)
         {
-            I = 0;
-            old_e = e;
-            old_cmd = consigne;
+            *I = 0;
+            *old_e = e;
+            *old_consigne = consigne;
         }
         else
         {
             // Terme intégral
-            I += Ki * old_e * DELTA_T / 2;
-            I += Ki * e * DELTA_T / 2;
+            *I += Ki * *old_e * DELTA_T / 2;
+            *I += Ki * e * DELTA_T / 2;
         }
 
         // Terme dérivé
-        float D = Kd * (e - old_e) / DELTA_T;
-        old_e = e;
+        float D = Kd * (e - *old_e) / DELTA_T;
+        *old_e = e;
 
         // printf("P = %f, I = %f, D = %f (e = %f, temp = %f, consigne = %f)\n", P, I, D, e, temp, consigne);
 
         // Commande
-        float cmd = P + I + D;
+        float cmd = P + *I + D;
 
         return cmd > 0 ? cmd <= 100 ? cmd : 100 : 0;
     default:
@@ -60,13 +66,18 @@ float regulationTest(int regul, float consigne, float *tabT, int nT)
 {
     float cmd = 100.0;
 
-    old_e = 0;
-    old_cmd = 0;
-    I = 0;
+    // Ancienne valeur de l'écart
+    float old_e = 0;
+
+    // Ancienne valeur de la commande
+    float old_consigne = 0;
+
+    // Terme intégral de la régulation PID
+    float I = 0;
 
     for (int i = 0; i < nT; ++i)
     {
-        cmd = regulation(regul, tabT[i], consigne);
+        cmd = regulation(regul, tabT[i], consigne, &old_consigne, &old_e, &I);
     }
 
     return cmd;
