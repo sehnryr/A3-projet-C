@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "regulation.h"
 
-#define DT 10.0
-
 /**
  * @brief Fonction de régulation
  *
@@ -23,8 +21,11 @@ float regulation(int regul, float temp, float consigne)
         else
             return 0;
     case PID:;
-        // Equart absolu entre la consigne et la température
-        float e = consigne > temp ? consigne - temp : temp - consigne;
+        // Ecart entre la consigne et la température
+        float e = consigne - temp;
+
+        // Terme proportionnel
+        float P = Kp * e;
 
         // Si la consigne a changé, on réinitialise les termes intégral et dérivé
         if (consigne != old_cmd)
@@ -33,18 +34,18 @@ float regulation(int regul, float temp, float consigne)
             old_e = e;
             old_cmd = consigne;
         }
-
-        // Terme proportionnel
-        float P = Kp * e;
-
-        // Terme intégral
-        I += Ki * e * DT;
+        else
+        {
+            // Terme intégral
+            I += Ki * old_e * DELTA_T / 2;
+            I += Ki * e * DELTA_T / 2;
+        }
 
         // Terme dérivé
-        float D = Kd * (e - old_e) / DT;
+        float D = Kd * (e - old_e) / DELTA_T;
         old_e = e;
 
-        printf("P = %f, I = %f, D = %f\n", P, I, D);
+        // printf("P = %f, I = %f, D = %f (e = %f, temp = %f, consigne = %f)\n", P, I, D, e, temp, consigne);
 
         // Commande
         float cmd = P + I + D;
