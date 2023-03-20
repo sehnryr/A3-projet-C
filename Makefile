@@ -19,6 +19,12 @@ OBJ_DIR = obj
 BUILD_DIR = build
 FTD2XX = libraries/ftd2xx
 
+ifeq ($(OS),Windows_NT)
+	FTD2XX_LIB = $(FTD2XX)/ftd2xx.lib
+else
+	FTD2XX_LIB = $(FTD2XX)/libftd2xx.so.1.4.27
+endif
+
 # Get all .c files in src and its subdirectories
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/**/*.c)
 # Replace .c with .o
@@ -68,7 +74,7 @@ usb: $(BUILD_DIR)/test_usb $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $^ test/test_usb.c \
 		-lstdc++fs \
 		-I$(INCLUDE_DIR) \
-		-I$(FTD2XX) $(FTD2XX)/ftd2xx.lib
+		-I$(FTD2XX) $(FTD2XX_LIB)
 
 # Build the zip file for the submission of the project
 zip:
