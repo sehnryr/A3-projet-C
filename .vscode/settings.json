@@ -3,6 +3,7 @@
         "visualisationt.h": "c",
         "simulateur.h": "c",
         "visualisationc.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "consigne.h": "c"
     }
 }
