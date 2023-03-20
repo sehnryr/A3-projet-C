@@ -25,6 +25,7 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 # Default target
 $(TARGET): $(OBJ_FILES)
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o $@ $^ -lstdc++fs -I$(INCLUDE_DIR)
 
 # Compile .c files to .o files
@@ -32,10 +33,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
 
-.PHONY: clean build
+.PHONY: clean
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
-
-build:
-	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC_FILES) -lstdc++fs -I$(INCLUDE_DIR)
