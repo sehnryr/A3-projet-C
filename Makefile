@@ -37,7 +37,7 @@ $(BUILD_DIR)/%:
 # Compile .c files to .o files when a prerequisite calls for it
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
+	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR) -I$(FTD2XX)
 
 # Default goal
 # This will be called when make is called without arguments
