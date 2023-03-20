@@ -18,22 +18,16 @@ INCLUDE_DIR = include
 OBJ_DIR = obj
 BUILD_DIR = build
 
-# Define the target executable
-TARGET = $(BUILD_DIR)/main
-
 # Get all .c files in src and its subdirectories
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/**/*.c)
 # Replace .c with .o
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
-# Default target
-# This will be called when TARGET is not up to date
-$(TARGET): $(OBJ_FILES)
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(dir $@)
+# Create the build directory when a prequisite calls for it
+$(BUILD_DIR)/%:
+	@mkdir -p $(BUILD_DIR)
 
-# Compile .c files to .o files
-# This will be called when the .o file is not up to date
+# Compile .c files to .o files when a prerequisite calls for it
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
@@ -59,11 +53,11 @@ clean:
 	rm -rf $(OBJ_DIR) $(BUILD_DIR)
 
 # Build the autotests executable
-autotests: $(TARGET) $(OBJ_FILES)
+autotests: $(BUILD_DIR)/test_autotests $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -lstdc++fs -I$(INCLUDE_DIR)
 
 # Build the simulation executable and initialize data.txt and consigne.txt
-simulation: $(TARGET) $(OBJ_FILES)
+simulation: $(BUILD_DIR)/test_sim $(OBJ_FILES)
 	$(init)
 	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
 
