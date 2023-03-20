@@ -3,6 +3,7 @@
 #ifdef _WIN32
 #include <Windows.h>
 #else
+#define __USE_XOPEN_EXTENDED
 #include <unistd.h>
 #endif
 
@@ -19,7 +20,7 @@ void msleep(int ms)
 #ifdef _WIN32
     Sleep(ms);
 #else
-    sleep(ms * 1000);
+    usleep(ms * 1000);
 #endif
 }
 
