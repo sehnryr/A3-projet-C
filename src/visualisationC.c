@@ -4,7 +4,7 @@
 #include "visualisationC.h"
 
 /**
- * @brief Envoie la puissance de chauffage à la visualisation
+ * @brief Envoi d'un témoin de chauffe à la visualisation
  *
  * @param puissance_f Puissance de chauffage
  */
