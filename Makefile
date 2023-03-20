@@ -34,7 +34,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 # Default goal
 .DEFAULT_GOAL := simulation
 
-.PHONY: clean autotests simulation zip init
+init := @touch data.txt consigne.txt && \
+		echo "false" > data.txt && \
+		echo "20.0" >> data.txt && \
+		echo "10.0" >> data.txt && \
+		echo "0.0" > consigne.txt
+
+.PHONY: clean autotests simulation zip
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
 
@@ -42,6 +48,7 @@ autotests: $(TARGET) $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -lstdc++fs -I$(INCLUDE_DIR)
 
 simulation: $(TARGET) $(OBJ_FILES)
+	$(init)
 	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
 
 zip:
@@ -51,12 +58,3 @@ zip:
     test \
     Makefile \
 	README.md
-
-init:
-	@touch data.txt
-	@echo "false" > data.txt
-	@echo "20.0" >> data.txt
-	@echo "10.0" >> data.txt
-
-	@touch consigne.txt
-	@echo "0.0" > consigne.txt
