@@ -31,9 +31,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
 
-.PHONY: clean simulation
+.PHONY: clean autotests simulation
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
+
+autotests: $(TARGET) $(OBJ_FILES)
+	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -lstdc++fs -I$(INCLUDE_DIR)
 
 simulation: $(TARGET) $(OBJ_FILES)
 	@mkdir -p $(dir $@)
