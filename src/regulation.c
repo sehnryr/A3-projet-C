@@ -8,6 +8,9 @@
  * @param regul Type de régulation
  * @param temp Température intérieure
  * @param consigne Consigne de température intérieure à atteindre
+ * @param old_consigne Ancienne consigne
+ * @param old_e Ancien écart
+ * @param I Terme intégral
  */
 float regulation(
     int regul,
@@ -33,7 +36,8 @@ float regulation(
         // Terme proportionnel
         float P = Kp * e;
 
-        // Si la consigne a changé, on réinitialise les termes intégral et dérivé
+        // Si la consigne a changé,
+        // on réinitialise les termes intégral et dérivé
         if (consigne != *old_consigne)
         {
             *I = 0;
@@ -60,6 +64,14 @@ float regulation(
     }
 }
 
+/**
+ * @brief Fonction de test de la régulation
+ *
+ * @param regul Type de régulation
+ * @param consigne Consigne de température intérieure à atteindre
+ * @param tabT Tableau des températures intérieures
+ * @param nT Nombre de températures intérieures
+ */
 float regulationTest(int regul, float consigne, float *tabT, int nT)
 {
     float cmd = 100.0;
