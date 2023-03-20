@@ -1,6 +1,9 @@
-# Variables
+# Makefile for the project
+
+# Define the compiler
 CC = gcc
 
+# Compiler flags
 # -Wall: Enable all warnings
 # -Wextra: Enable extra warnings
 # -pedantic: Enable pedantic warnings
@@ -9,6 +12,7 @@ CC = gcc
 # -Og: Optimize for debugging
 CFLAGS = -Wall -Wextra -pedantic -std=c17 -O3 -Og
 
+# Define the directories
 SRC_DIR = src
 INCLUDE_DIR = include
 OBJ_DIR = obj
