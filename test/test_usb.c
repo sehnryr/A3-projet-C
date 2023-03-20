@@ -60,9 +60,11 @@ int main()
             &PID_old_e,
             &PID_I);
 
-        // TODO: Envoi de la puissance au chauffage
+        // Envoi de la puissance au chauffage
+        commande(ftHandle, puissance);
 
-        // TODO: Récupération de la température
+        // Récupération de la température
+        temperature = releve(ftHandle);
 
         // Visualisation de la consigne
         visualisationC(puissance);
@@ -74,7 +76,7 @@ int main()
     // Mise de la puissance à 0 pour arrêter le chauffage
     puissance = 0;
     visualisationC(puissance);
-    // TODO: Envoi de la puissance au chauffage
+    commande(ftHandle, puissance);
 
     return EXIT_SUCCESS;
 }
