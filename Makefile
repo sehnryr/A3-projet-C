@@ -62,8 +62,13 @@ simulation: $(BUILD_DIR)/test_sim $(OBJ_FILES)
 	$(init)
 	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
 
+# Build the usb executable with the ftd2xx library and initialize data.txt 
+# and consigne.txt
 usb: $(BUILD_DIR)/test_usb $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $^ test/test_usb.c -lstdc++fs -I$(INCLUDE_DIR) -I$(FTD2XX) $(FTD2XX)/ftd2xx.lib
+	$(CC) $(CFLAGS) -o $^ test/test_usb.c \
+		-lstdc++fs \
+		-I$(INCLUDE_DIR) \
+		-I$(FTD2XX) $(FTD2XX)/ftd2xx.lib
 
 # Build the zip file for the submission of the project
 zip:
