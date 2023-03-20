@@ -10,7 +10,7 @@
  */
 void visualisationC(float puissance_f)
 {
-   // Tentative de lecture de "data.txt"
+   // Tentative de lecture de data.txt
 
    // Si le fichier .verrouData existe, le fichier data.txt est en cours
    // d'utilisation par un autre programme, retour de la fonction.
