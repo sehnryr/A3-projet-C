@@ -15,9 +15,9 @@ float regulation(int regul, float temp, float consigne)
     {
     case TOUT_OU_RIEN:
         // Si la température est inférieure à la consigne,
-        // on allume le chauffage à 40%. Sinon, on l'éteint.
+        // on allume le chauffage à 50%. Sinon, on l'éteint.
         if (temp < consigne)
-            return 0.4;
+            return 50;
         else
             return 0;
     case PID:
