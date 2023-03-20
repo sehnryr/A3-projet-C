@@ -66,8 +66,8 @@ simulation: $(TARGET) $(OBJ_FILES)
 # Build the zip file for the submission of the project
 zip:
 	@zip -r sources_AA_YM.zip \
-    include \
-    src \
-    test \
-    Makefile \
+	include \
+	src \
+	test \
+	Makefile \
 	README.md
