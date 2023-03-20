@@ -17,6 +17,7 @@ SRC_DIR = src
 INCLUDE_DIR = include
 OBJ_DIR = obj
 BUILD_DIR = build
+FTD2XX = libraries/ftd2xx
 
 # Get all .c files in src and its subdirectories
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/**/*.c)
@@ -60,6 +61,9 @@ autotests: $(BUILD_DIR)/test_autotests $(OBJ_FILES)
 simulation: $(BUILD_DIR)/test_sim $(OBJ_FILES)
 	$(init)
 	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
+
+usb: $(BUILD_DIR)/test_usb $(OBJ_FILES)
+	$(CC) $(CFLAGS) -o $^ test/test_usb.c -lstdc++fs -I$(INCLUDE_DIR) -I$(FTD2XX) $(FTD2XX)/ftd2xx.lib
 
 # Build the zip file for the submission of the project
 zip:
