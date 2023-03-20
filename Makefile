@@ -25,13 +25,16 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 $(TARGET): $(OBJ_FILES)
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -o $@ $^ -lstdc++fs -I$(INCLUDE_DIR)
 
 # Compile .c files to .o files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCLUDE_DIR)
 
-.PHONY: clean
+.PHONY: clean simulation
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
+
+simulation: $(TARGET) $(OBJ_FILES)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
