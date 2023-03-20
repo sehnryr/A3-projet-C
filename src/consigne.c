@@ -2,11 +2,6 @@
 
 float consigne(float thermostatPrec_f)
 {
-<<<<<<< HEAD
-    float thermostat_f = 0;
-
-    return thermostat_f;
-=======
 
    float thermostat_f = 0;
 
@@ -51,5 +46,4 @@ float consigne(float thermostatPrec_f)
 
    // je retourne la valeur de la consigne
    return thermostat_f;
->>>>>>> 8d05de5 (update consigne.c)
 }
