@@ -5,6 +5,7 @@
 #include "visualisationC.h"
 #include "visualisationT.h"
 
+#include "ftd2xx.h"
 #include "commande.h"
 #include "releve.h"
 
@@ -23,6 +24,21 @@ int main()
     float PID_old_consigne = 0; // Ancienne consigne
     float PID_old_e = 0;        // Ancien écart
     float PID_I = 0;            // Terme intégral
+
+    // Initialisation de la communication USB
+    FT_HANDLE ftHandle;
+    FT_STATUS ftStatus;
+    ftStatus = FT_Open(0, &ftHandle); // Might use FT_OpenEx() instead
+    ftStatus = FT_SetBaudRate(ftHandle, FT_BAUD_115200);
+    ftStatus = FT_SetDataCharacteristics(ftHandle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE);
+    ftStatus = FT_SetFlowControl(ftHandle, FT_FLOW_NONE, 0, 0);
+
+    // Vérification de l'initialisation
+    if (ftStatus != FT_OK)
+    {
+        printf("Erreur d'initialisation de la communication USB !\n");
+        return EXIT_FAILURE;
+    }
 
     // Boucle de régulation
     while (1)
