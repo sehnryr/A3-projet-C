@@ -13,17 +13,24 @@
 
 int main()
 {
-    float score1, score2, score3, score4, score5 = 0;
-    score1 = testVisualisationT();
-    score2 = testConsigne();
-    score3 = testVisualisationC();
-    score4 = testRegulationTOR();
-    score5 = testRegulationPID();
+    int score1, score2, score3, score4, score5 = 0;
+    score1 = (int)(testVisualisationT() * 100);
+    score2 = (int)(testConsigne()       * 100);
+    score3 = (int)(testVisualisationC() * 100);
+    score4 = (int)(testRegulationTOR()  * 100);
+    score5 = (int)(testRegulationPID()  * 100);
     printf("------ Auto tests results: ------\n");
-    printf("testVisualisationT : score = %3g%%\n", score1 * 100);
-    printf("testConsigne       : score = %3g%%\n", score2 * 100);
-    printf("testVisualisationC : score = %3g%%\n", score3 * 100);
-    printf("testRegulationTOR  : score = %3g%%\n", score4 * 100);
-    printf("testRegulationPID  : score = %3g%%\n", score5 * 100);
+    printf("testVisualisationT : score = %3d%%\n", score1);
+    printf("testConsigne       : score = %3d%%\n", score2);
+    printf("testVisualisationC : score = %3d%%\n", score3);
+    printf("testRegulationTOR  : score = %3d%%\n", score4);
+    printf("testRegulationPID  : score = %3d%%\n", score5);
+
+    if (score1 != 100 ||
+        score2 != 100 ||
+        score3 != 100 ||
+        score4 != 100 ||
+        score5 != 100)
+        return EXIT_FAILURE;
     return EXIT_SUCCESS;
 }
