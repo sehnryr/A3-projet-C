@@ -1,0 +1,32 @@
+name: Makefile CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get install make
+
+      - name: Build autotests
+        run: make autotests
+
+      - name: Build simulation
+        run: make simulation
+
+      - name: Build usb
+        run: make usb
