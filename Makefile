@@ -56,7 +56,8 @@ init := @touch data.txt consigne.txt && \
 
 # Clean the build directory
 clean:
-	rm -rf $(OBJ_DIR) $(BUILD_DIR) sources_AA_YM.zip data.txt consigne.txt
+	rm -rf $(OBJ_DIR) $(BUILD_DIR) sources_AA_YM.zip \
+	data.txt consigne.txt trace.txt
 
 # Build the autotests executable
 autotests: $(BUILD_DIR)/test_autotests \
