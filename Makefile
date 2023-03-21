@@ -78,6 +78,7 @@ usb: $(BUILD_DIR)/test_usb \
 		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
 		$(OBJ_DIR)/commande.o $(OBJ_DIR)/releve.o \
 		test/test_usb.c
+	$(init)
 	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR) -I$(FTD2XX) $(FTD2XX_LIB)
 
 # Build the zip file for the submission of the project
