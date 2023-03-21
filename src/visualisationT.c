@@ -9,11 +9,6 @@
 #include <unistd.h>
 #include "visualisationT.h"
 
-/**
- * @brief Envoi de la température à la visualisation
- *
- * @param myTemp Température intérieure et extérieure
- */
 void visualisationT(temp_t myTemp)
 {
     // Tentative de lecture de data.txt

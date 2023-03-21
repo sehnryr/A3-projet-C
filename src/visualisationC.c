@@ -11,11 +11,6 @@
 #include <math.h>
 #include "visualisationC.h"
 
-/**
- * @brief Envoi d'un témoin de chauffe à la visualisation
- *
- * @param puissance_f Puissance de chauffage
- */
 void visualisationC(float puissance_f)
 {
     // Tentative de lecture de data.txt

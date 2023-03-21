@@ -1,3 +1,11 @@
+/**
+ * @file regulation.h
+ * @brief Fonction de régulation de la température intérieure
+ * @authors
+ * - Youn Mélois <youn@melois.dev>
+ * @date 2023-03-20
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "define.h"
@@ -18,6 +26,17 @@ enum REGULATION_TYPE
     PID = 2           /// Proportionnel Intégral Dérivé
 };
 
+/**
+ * @brief Fonction de régulation
+ *
+ * @param regul Type de régulation
+ * @param temperature Température intérieure
+ * @param consigne Consigne de température intérieure à atteindre
+ * @param ancien_consigne Ancienne consigne
+ * @param ancien_ecart Ancien écart
+ * @param I Terme intégral
+ * @return Commande de chauffage
+ */
 float regulation(
     int regul,
     float temperature,
@@ -25,6 +44,15 @@ float regulation(
     float *ancien_consigne,
     float *ancien_ecart,
     float *pPID_I);
+
+/**
+ * @brief Fonction de test de la régulation
+ *
+ * @param regul Type de régulation
+ * @param consigne Consigne de température intérieure à atteindre
+ * @param tabT Tableau des températures intérieures
+ * @param nT Nombre de températures intérieures
+ */
 float regulationTest(int regul, float consigne, float *tabT, int nT);
 
 #endif // REGULATION_H

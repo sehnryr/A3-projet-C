@@ -10,17 +10,6 @@
 #include <stdlib.h>
 #include "regulation.h"
 
-/**
- * @brief Fonction de régulation
- *
- * @param regul Type de régulation
- * @param temperature Température intérieure
- * @param consigne Consigne de température intérieure à atteindre
- * @param ancien_consigne Ancienne consigne
- * @param ancien_ecart Ancien écart
- * @param I Terme intégral
- * @return Commande de chauffage
- */
 float regulation(
     int regul,
     float temperature,
@@ -72,14 +61,6 @@ float regulation(
     }
 }
 
-/**
- * @brief Fonction de test de la régulation
- *
- * @param regul Type de régulation
- * @param consigne Consigne de température intérieure à atteindre
- * @param tabT Tableau des températures intérieures
- * @param nT Nombre de températures intérieures
- */
 float regulationTest(int regul, float consigne, float *tabT, int nT)
 {
     float cmd = 100.0;
