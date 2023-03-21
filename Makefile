@@ -61,18 +61,17 @@ clean:
 
 # Build the autotests executable
 autotests: $(BUILD_DIR)/test_autotests $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -lstdc++fs -I$(INCLUDE_DIR)
+	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -I$(INCLUDE_DIR)
 
 # Build the simulation executable and initialize data.txt and consigne.txt
 simulation: $(BUILD_DIR)/test_sim $(OBJ_FILES)
 	$(init)
-	$(CC) $(CFLAGS) -o $^ test/test_sim.c -lstdc++fs -I$(INCLUDE_DIR)
+	$(CC) $(CFLAGS) -o $^ test/test_sim.c -I$(INCLUDE_DIR)
 
 # Build the usb executable with the ftd2xx library and initialize data.txt 
 # and consigne.txt
 usb: $(BUILD_DIR)/test_usb $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $^ test/test_usb.c \
-		-lstdc++fs \
 		-I$(INCLUDE_DIR) \
 		-I$(FTD2XX) $(FTD2XX_LIB)
 
