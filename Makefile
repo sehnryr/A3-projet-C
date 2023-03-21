@@ -36,7 +36,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Default goal
 # This will be called when make is called without arguments
-.DEFAULT_GOAL := simulation
+.DEFAULT_GOAL := usb
 
 # Function to initialize data.txt and consigne.txt
 init := @touch data.txt consigne.txt && \
