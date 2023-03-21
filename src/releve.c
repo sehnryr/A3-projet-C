@@ -13,7 +13,6 @@ temp_t releve(FT_HANDLE ftHandle)
     // je reprends l'exemple de la page 17 de la doc et je modifie les valeurs pour que ca fonctionne
     // j'suis pas sur de tt comprendre le code et j'peux pas test donc bon, 'jfais de mon mieux
 
-    FT_HANDLE ftHandle;
     FT_STATUS ftStatus;
     DWORD RxBytes;
     DWORD TxBytes;
@@ -75,7 +74,7 @@ temp_t releve(FT_HANDLE ftHandle)
                 {
                     // FT_Read OK
                     // je recuperer les valeurs de temp interieure stockée dans les 4 derniers bit des 3 premier octets
-                    
+
 
                 
                 }
