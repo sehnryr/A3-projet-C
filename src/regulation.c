@@ -55,7 +55,8 @@ float regulation(
         *ancien_ecart = ecart;
         *ancien_consigne = consigne;
 
-        return commande > 0 ? commande <= 100 ? commande : 100 : 0;
+        // On s'assure que la commande est comprise entre 0 et 100
+        return commande > 0 ? (commande <= 100 ? commande : 100) : 0;
     default:
         return 0;
     }
