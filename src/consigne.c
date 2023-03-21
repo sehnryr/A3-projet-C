@@ -1,3 +1,11 @@
+/**
+ * @file consigne.c
+ * @brief Fonction de récupération de la consigne de température
+ * @authors
+ * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
+ * @date 2023-03-20
+ */
+
 #include <unistd.h>
 #include "consigne.h"
 

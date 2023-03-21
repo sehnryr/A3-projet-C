@@ -1,3 +1,11 @@
+/**
+ * @file visualisationT.c
+ * @brief Fonction d'envoi de la température à la visualisation
+ * @authors
+ * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
+ * @date 2023-03-20
+ */
+
 #include <unistd.h>
 #include "visualisationT.h"
 

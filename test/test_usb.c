@@ -1,3 +1,11 @@
+/**
+ * @file test_usb.c
+ * @brief Programme de test de la communication USB
+ * @authors
+ * - Youn Mélois <youn@melois.dev>
+ * @date 2023-03-20
+ */
+
 #include <stdlib.h>
 
 #include "consigne.h"

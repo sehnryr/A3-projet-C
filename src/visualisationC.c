@@ -1,3 +1,11 @@
+/**
+ * @file visualisationC.c
+ * @brief Fonctions de visualisation de la consigne de chauffage
+ * @authors
+ * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
+ * @date 2023-03-20
+ */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <math.h>

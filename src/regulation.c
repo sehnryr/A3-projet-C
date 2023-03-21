@@ -1,3 +1,11 @@
+/**
+ * @file regulation.c
+ * @brief Fonction de régulation de la température intérieure
+ * @authors
+ * - Youn Mélois <youn@melois.dev>
+ * @date 2023-03-20
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "regulation.h"

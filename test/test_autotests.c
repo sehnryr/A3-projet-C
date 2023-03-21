@@ -1,3 +1,12 @@
+/**
+ * @file test_autotests.c
+ * @brief Programme de test des fonctions de l'application
+ * @authors
+ * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
+ * - Youn Mélois <youn@melois.dev>
+ * @date 2023-03-20
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "autotests.h"

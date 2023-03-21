@@ -1,3 +1,11 @@
+/**
+ * @file test_sim.c
+ * @brief Programme de test du simulateur
+ * @authors
+ * - Youn Mélois <youn@melois.dev>
+ * @date 2023-03-20
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "consigne.h"

@@ -1,3 +1,11 @@
+/**
+ * @file commande.c
+ * @brief Fonction de commande de chauffage via la liaison USB
+ * @authors
+ * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
+ * @date 2023-03-20
+ */
+
 #include "commande.h"
 
 /**

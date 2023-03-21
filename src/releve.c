@@ -1,3 +1,11 @@
+/**
+ * @file releve.c
+ * @brief Fonction de releve de la temperature via la liaison USB
+ * @authors
+ * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
+ * @date 2023-03-20
+ */
+
 #include "releve.h"
 
 /**
