@@ -1,6 +1,6 @@
 /**
  * @file visualisationC.c
- * @brief Fonctions de visualisation de la consigne de chauffage
+ * @brief Fonction de visualisation de la consigne de chauffage
  * @authors
  * - Alexandre Auguste <alexandre.auguste@isen-ouest.yncrea.fr>
  * @date 2023-03-20
