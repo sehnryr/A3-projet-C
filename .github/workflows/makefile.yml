@@ -14,10 +14,19 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest] # windows-latest
+        os:
+          - ubuntu-latest
+          - windows-latest
+        compiler:
+          - gcc
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup C/C++
+        uses: aminya/setup-cpp@v0.26.2
+        with:
+          compiler: ${{ matrix.compiler }}
 
       - name: Install dependencies
         run: sudo apt-get install make
