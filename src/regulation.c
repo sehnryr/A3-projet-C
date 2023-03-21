@@ -6,57 +6,59 @@
  * @brief Fonction de régulation
  *
  * @param regul Type de régulation
- * @param temp Température intérieure
+ * @param temperature Température intérieure
  * @param consigne Consigne de température intérieure à atteindre
- * @param old_consigne Ancienne consigne
- * @param old_e Ancien écart
+ * @param ancien_consigne Ancienne consigne
+ * @param ancien_ecart Ancien écart
  * @param I Terme intégral
  * @return Commande de chauffage
  */
 float regulation(
     int regul,
-    float temp,
+    float temperature,
     float consigne,
-    float *old_consigne,
-    float *old_e,
-    float *I)
+    float *ancien_consigne,
+    float *ancien_ecart,
+    float *pPID_I)
 {
     switch (regul)
     {
     case TOUT_OU_RIEN:
         // Si la température est inférieure à la consigne,
         // on allume le chauffage à 50%. Sinon, on l'éteint.
-        return temp < consigne ? 50 : 0;
+        return temperature < consigne ? 50 : 0;
     case PID:;
         // Ecart entre la consigne et la température
-        float e = consigne - temp;
+        float ecart = consigne - temperature;
 
         // Terme proportionnel
-        float P = Kp * e;
+        float PID_P = Kp * ecart;
+
+        // Terme intégral
+        float PID_I = *pPID_I;
+        PID_I += Ki * *ancien_ecart * DELTA_T / 2; // Première moitié du trapèze
+        PID_I += Ki * ecart * DELTA_T / 2;         // Deuxième moitié du trapèze
+
+        // Terme dérivé
+        float PID_D = Kd * (ecart - *ancien_ecart) / DELTA_T;
 
         // Si la consigne a changé,
         // on réinitialise les termes intégral et dérivé
-        if (consigne != *old_consigne)
+        if (consigne != *ancien_consigne)
         {
-            *I = 0;
-            *old_e = e;
-            *old_consigne = consigne;
-        }
-        else
-        {
-            // Terme intégral
-            *I += Ki * *old_e * DELTA_T / 2; // Première moitié du trapèze
-            *I += Ki * e * DELTA_T / 2;      // Deuxième moitié du trapèze
+            PID_I = 0;
+            PID_D = 0;
         }
 
-        // Terme dérivé
-        float D = Kd * (e - *old_e) / DELTA_T;
-        *old_e = e;
+        // Commande de chauffage
+        float commande = PID_P + PID_I + PID_D;
 
-        // Commande
-        float cmd = P + *I + D;
+        // Mise à jour des pointeurs
+        *pPID_I = PID_I;
+        *ancien_ecart = ecart;
+        *ancien_consigne = consigne;
 
-        return cmd > 0 ? cmd <= 100 ? cmd : 100 : 0;
+        return commande > 0 ? commande <= 100 ? commande : 100 : 0;
     default:
         return 0;
     }
@@ -74,18 +76,24 @@ float regulationTest(int regul, float consigne, float *tabT, int nT)
 {
     float cmd = 100.0;
 
-    // Ancienne valeur de l'écart
-    float old_e = 0;
-
     // Ancienne valeur de la commande
-    float old_consigne = 0;
+    float ancien_consigne = 0;
+
+    // Ancienne valeur de l'écart
+    float ancien_ecart = 0;
 
     // Terme intégral de la régulation PID
-    float I = 0;
+    float PID_I = 0;
 
     for (int i = 0; i < nT; ++i)
     {
-        cmd = regulation(regul, tabT[i], consigne, &old_consigne, &old_e, &I);
+        cmd = regulation(
+            regul,
+            tabT[i],
+            consigne,
+            &ancien_consigne,
+            &ancien_ecart,
+            &PID_I);
     }
 
     return cmd;

@@ -20,11 +20,11 @@ enum REGULATION_TYPE
 
 float regulation(
     int regul,
-    float temp,
+    float temperature,
     float consigne,
-    float *old_consigne,
-    float *old_e,
-    float *I);
+    float *ancien_consigne,
+    float *ancien_ecart,
+    float *pPID_I);
 float regulationTest(int regul, float consigne, float *tabT, int nT);
 
 #endif // REGULATION_H
