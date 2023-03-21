@@ -25,11 +25,6 @@ else
 	FTD2XX_LIB = $(FTD2XX)/libftd2xx.a
 endif
 
-# Get all .c files in src and its subdirectories
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/**/*.c)
-# Replace .c with .o
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
-
 # Create the build directory when a prequisite calls for it
 $(BUILD_DIR)/%:
 	@mkdir -p $(BUILD_DIR)
@@ -60,20 +55,30 @@ clean:
 	rm -rf $(OBJ_DIR) $(BUILD_DIR)
 
 # Build the autotests executable
-autotests: $(BUILD_DIR)/test_autotests $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $^ test/test_autotests.c -I$(INCLUDE_DIR)
+autotests: $(BUILD_DIR)/test_autotests \
+		$(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
+		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
+		$(OBJ_DIR)/autotests.o \
+		test/test_autotests.c
+	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR)
 
 # Build the simulation executable and initialize data.txt and consigne.txt
-simulation: $(BUILD_DIR)/test_sim $(OBJ_FILES)
+simulation: $(BUILD_DIR)/test_sim \
+		$(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
+		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
+		$(OBJ_DIR)/simulateur.o \
+		test/test_sim.c
 	$(init)
-	$(CC) $(CFLAGS) -o $^ test/test_sim.c -I$(INCLUDE_DIR)
+	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR)
 
 # Build the usb executable with the ftd2xx library and initialize data.txt 
 # and consigne.txt
-usb: $(BUILD_DIR)/test_usb $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $^ test/test_usb.c \
-		-I$(INCLUDE_DIR) \
-		-I$(FTD2XX) $(FTD2XX_LIB)
+usb: $(BUILD_DIR)/test_usb \
+		$(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
+		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
+		$(OBJ_DIR)/commande.o $(OBJ_DIR)/releve.o \
+		test/test_usb.c
+	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR) -I$(FTD2XX) $(FTD2XX_LIB)
 
 # Build the zip file for the submission of the project
 zip:
