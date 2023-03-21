@@ -11,7 +11,7 @@
 #include "regulation.h"
 
 float regulation(
-    int regul,
+    enum REGULATION_TYPE regul,
     float temperature,
     float consigne,
     float *ancien_consigne,

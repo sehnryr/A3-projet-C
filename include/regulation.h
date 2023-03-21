@@ -38,7 +38,7 @@ enum REGULATION_TYPE
  * @return Commande de chauffage
  */
 float regulation(
-    int regul,
+    enum REGULATION_TYPE regul,
     float temperature,
     float consigne,
     float *ancien_consigne,
