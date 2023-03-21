@@ -25,6 +25,10 @@ else
 	FTD2XX_LIB = $(FTD2XX)/libftd2xx.a
 endif
 
+# Define the base objects that are shared between the executables
+BASE_OBJ = $(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
+		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o
+
 # Create the build directory when a prequisite calls for it
 $(BUILD_DIR)/%:
 	@mkdir -p $(BUILD_DIR)
@@ -56,16 +60,14 @@ clean:
 
 # Build the autotests executable
 autotests: $(BUILD_DIR)/test_autotests \
-		$(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
-		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
+		$(BASE_OBJ) \
 		$(OBJ_DIR)/autotests.o \
 		test/test_autotests.c
 	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR)
 
 # Build the simulation executable and initialize data.txt and consigne.txt
 simulation: $(BUILD_DIR)/test_sim \
-		$(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
-		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
+		$(BASE_OBJ) \
 		$(OBJ_DIR)/simulateur.o \
 		test/test_sim.c
 	$(init)
@@ -74,8 +76,7 @@ simulation: $(BUILD_DIR)/test_sim \
 # Build the usb executable with the ftd2xx library and initialize data.txt 
 # and consigne.txt
 usb: $(BUILD_DIR)/test_usb \
-		$(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
-		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o \
+		$(BASE_OBJ) \
 		$(OBJ_DIR)/commande.o $(OBJ_DIR)/releve.o \
 		test/test_usb.c
 	$(init)
