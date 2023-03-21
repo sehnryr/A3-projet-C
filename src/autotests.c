@@ -358,7 +358,7 @@ float testVisualisationC()
     float interieure_read;
     char temoin_chauffe_read[8];
 
-    strcpy(temoin_chauffe, "not");
+    strcpy(temoin_chauffe, "false");
     /**********************************************
     Remove verrou if exists
     **********************************************/
@@ -447,7 +447,7 @@ float testVisualisationC()
         /*********************************************
        Data file initialisation
        **********************************************/
-        strcpy(temoin_chauffe, "not");
+        strcpy(temoin_chauffe, "false");
         pf = fopen("data.txt", "w");
         if (pf == NULL)
         {
