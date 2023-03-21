@@ -23,13 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup C/C++
+      - name: Setup C/C++ and make
         uses: aminya/setup-cpp@v0.26.2
         with:
           compiler: ${{ matrix.compiler }}
-
-      - name: Install dependencies
-        run: sudo apt-get install make
 
       - name: Build autotests
         run: make autotests
