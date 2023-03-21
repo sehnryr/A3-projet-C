@@ -34,7 +34,7 @@ enum REGULATION_TYPE
  * @param consigne Consigne de température intérieure à atteindre
  * @param ancien_consigne Ancienne consigne
  * @param ancien_ecart Ancien écart
- * @param I Terme intégral
+ * @param pPID_I Terme intégral
  * @return Commande de chauffage
  */
 float regulation(
