@@ -13,17 +13,17 @@
 #ifndef REGULATION_H
 #define REGULATION_H
 
-#define DELTA_T 10.0 // Durée d'un pas de régulation en secondes
+#define DELTA_T 10.0 ///< Durée d'un pas de régulation en secondes
 
-#define Kp 1.1
-#define Ki 0.2
-#define Kd 0.15
+#define Kp 1.1  ///< Coefficient du terme proportionnel du PID
+#define Ki 0.2  ///< Coefficient du terme intégral du PID
+#define Kd 0.15 ///< Coefficient du terme dérivé du PID
 
-/// Type d'une consigne
+/// @brief Type d'une consigne
 enum REGULATION_TYPE
 {
-    TOUT_OU_RIEN = 1, /// Tout ou rien
-    PID = 2           /// Proportionnel Intégral Dérivé
+    TOUT_OU_RIEN = 1, ///< Tout ou rien
+    PID = 2           ///< Proportionnel Intégral Dérivé
 };
 
 /**
