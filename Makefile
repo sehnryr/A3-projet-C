@@ -55,7 +55,7 @@ init := @touch data.txt consigne.txt && \
 
 # Clean the build directory
 clean:
-	rm -rf $(OBJ_DIR) $(BUILD_DIR) sources_AA_YM.zip \
+	rm -rf $(OBJ_DIR) $(BUILD_DIR) sources_aa_ym.zip \
 	data.txt consigne.txt .verrouData .verrouConsigne trace.txt
 
 # Build the autotests executable
@@ -84,7 +84,7 @@ usb: $(BUILD_DIR)/test_usb \
 
 # Build the zip file for the submission of the project
 zip:
-	@zip -r sources_AA_YM.zip \
+	@zip -r sources_aa_ym.zip \
 	include \
 	libraries \
 	src \
