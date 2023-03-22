@@ -8,7 +8,7 @@
 
 #include "releve.h"
 
-temp_t releve(FT_HANDLE ftHandle, float ancien_temp_ext, float ancien_temp_int)
+FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
 {
     FT_STATUS ftStatus;
     DWORD RxBytes;
@@ -16,14 +16,12 @@ temp_t releve(FT_HANDLE ftHandle, float ancien_temp_ext, float ancien_temp_int)
     DWORD BytesReceived;
     char RxBuffer[6];
     DWORD EventDWord;
-    temp_t temp;
-    temp.exterieure = ancien_temp_ext;
-    temp.interieure = ancien_temp_int;
     unsigned int SOT_ext = 0;
     unsigned int SOT_int = 0;
 
-    FT_GetStatus(ftHandle, &RxBytes, &TxBytes, &EventDWord); // je vois si j'ai recu qqch
-    if (RxBytes > 0)                                         // si j'ai reçu
+    ftStatus = FT_GetStatus(ftHandle, &RxBytes, &TxBytes, &EventDWord); // je vois si j'ai recu qqch
+
+    if (RxBytes > 0) // si j'ai reçu
     {
         ftStatus = FT_Read(ftHandle, RxBuffer, RxBytes, &BytesReceived); // je lis
         if (ftStatus == FT_OK)
@@ -57,11 +55,11 @@ temp_t releve(FT_HANDLE ftHandle, float ancien_temp_ext, float ancien_temp_int)
             }
             float temp_ext_absolu = -39.64 + 0.04 * (SOT_ext); // température extérieur absolue
             float temp_int_absolu = -39.64 + 0.04 * (SOT_int); // température intérieur absolue
-            temp.exterieure = temp_ext_absolu;
-            temp.interieure = temp_int_absolu;
-            return temp;
+
+            temp->exterieure = temp_ext_absolu;
+            temp->interieure = temp_int_absolu;
         }
     }
 
-    return temp;
+    return ftStatus;
 }

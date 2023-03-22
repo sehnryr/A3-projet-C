@@ -16,10 +16,9 @@
  * @brief Releve la temperature via la liaison USB
  *
  * @param ftHandle Le handle de la liaison USB
- * @param ancien_temp_ext Temperature exterieure
- * @param ancien_temp_int Temperature interieure
- * @return temp_t La temperature interieure et exterieure relevee
+ * @param temp La temperature interieure et exterieure relevee
+ * @return Le status du releve
  */
-temp_t releve(FT_HANDLE ftHandle, float ancien_temp_ext, float ancien_temp_int);
+FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp);
 
 #endif // RELEVE_H
