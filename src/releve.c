@@ -14,7 +14,6 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
     DWORD RxBytes;
     DWORD TxBytes;
     DWORD BytesReceived;
-    char RxBuffer[6];
     DWORD EventDWord;
     unsigned int SOT_ext = 0;
     unsigned int SOT_int = 0;
@@ -25,6 +24,9 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
     // Si des données sont disponibles à la lecture
     if (ftStatus == FT_OK && RxBytes > 0)
     {
+        // Allocation de la mémoire pour les données à lire
+        char *RxBuffer = (char *)malloc(RxBytes * sizeof(char));
+
         // Lecture des données
         ftStatus = FT_Read(ftHandle, RxBuffer, RxBytes, &BytesReceived);
 
