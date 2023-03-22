@@ -8,38 +8,23 @@
 
 #include "commande.h"
 
-void commande(FT_HANDLE ftHandle, float puissance_f)
+FT_STATUS commande(FT_HANDLE ftHandle, float puissance_f)
 {
-    // TODO: Implementer la fonction
-    int PUIS = (puissance_f / 100) * 127;
+    // Calcul de la puissance arrondie à l'entier le plus proche
+    unsigned short PUIS = puissance_f * 127 / 100 + 0.5;
 
-    // page 18 de la doc, je reprends la fonction en exemple
-
-    FT_STATUS ftStatus;
     DWORD BytesWritten;
-    char TxBuffer[1]; // Contains data to write to device
+    char TxBuffer[1] = {0};
 
-    if (PUIS > 0)
+    if (PUIS != 0)
     {
-        // définition du bit 7 à 1
-        // TxBuffer[0] = 0x80; // 0x80 = 1000 0000 <- y'a un overflow ici
-        // définition des bits 6 à 0 à la valeur de la puissance en gardant le bit 7 à 1
-        TxBuffer[0] = 0x80 | (PUIS & 0x7F); // 0x7F = 0111 1111, cela me permet de garder les 7 bits de poids faible de PUIS, jsp si je peux cast en int comme ca et le balancer dans le truc, mais j'verrais bien si ca fonctionne quand je ferai le test
-    }
-    else
-    {
-        TxBuffer[0] = 0x00;
+        // MSB à 1 pour indiquer que la commande est une commande de chauffage
+        TxBuffer[0] |= 0x80;
+
+        // Ajout de la puissance de chauffage dans le buffer
+        TxBuffer[0] |= (PUIS & 0x7F);
     }
 
-    ftStatus = FT_Write(ftHandle, TxBuffer, sizeof(TxBuffer), &BytesWritten); // Write data to device
-
-    if (ftStatus == FT_OK)
-    {
-        // FT_Write OK
-    }
-    else
-    {
-        // FT_Write Failed
-    }
-    FT_Close(ftHandle);
+    // Envoie de la commande de chauffage via la liaison USB
+    return FT_Write(ftHandle, TxBuffer, sizeof(TxBuffer), &BytesWritten);
 }

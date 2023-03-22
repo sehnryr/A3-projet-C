@@ -16,7 +16,8 @@
  *
  * @param ftHandle Le handle de la liaison USB
  * @param puissance_f La consigne de chauffage
+ * @return Le status de la commande
  */
-void commande(FT_HANDLE ftHandle, float puissance_f);
+FT_STATUS commande(FT_HANDLE ftHandle, float puissance_f);
 
 #endif // COMMANDE_H
