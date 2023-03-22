@@ -79,13 +79,7 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
             float temp_int_absolu = -39.64 + 0.04 * (SOT_int);
 
             // Verification de la validité des données
-            if (SOT_ext != 0 &&
-                SOT_int != 0 &&
-                temp_ext_absolu >= 0 &&
-                temp_int_absolu >= 0 &&
-                temp_ext_absolu <= 40 &&
-                temp_int_absolu <= 40 &&
-                octets_lus == 6)
+            if (octets_lus == 6)
             {
                 // Si les données sont valides, on les enregistre
                 temp->exterieure = temp_ext_absolu;
