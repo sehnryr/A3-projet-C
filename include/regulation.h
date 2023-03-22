@@ -13,7 +13,12 @@
 #ifndef REGULATION_H
 #define REGULATION_H
 
+// En mode simulation, le pas de régulation est de 10 secondes au lieu de 100
+#ifndef SIMULATEUR_H
+#define DELTA_T 100.0 ///< Durée d'un pas de régulation en secondes
+#else
 #define DELTA_T 10.0 ///< Durée d'un pas de régulation en secondes
+#endif
 
 #define Kp 1.1  ///< Coefficient du terme proportionnel du PID
 #define Ki 0.2  ///< Coefficient du terme intégral du PID

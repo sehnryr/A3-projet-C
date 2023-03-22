@@ -8,9 +8,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "simulateur.h"
+
 #include "consigne.h"
 #include "regulation.h"
-#include "simulateur.h"
 #include "visualisationC.h"
 #include "visualisationT.h"
 
