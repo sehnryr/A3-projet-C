@@ -122,7 +122,7 @@ Utilisation</h1>
 <div class="line">./build/test_sim</div>
 </div><!-- fragment --><p>La partie communication permet de communiquer avec une STM32 pour tester les fonctions de supervision et de regulation. </p><div class="fragment"><div class="line">make usb</div>
 <div class="line">./build/test_usb</div>
-</div><!-- fragment --><p>Il est également possible de nettoyer le projet avec la commande: </p><div class="fragment"><div class="line">make clean</div>
+</div><!-- fragment --><p>Il est également possible de supprimer les fichiers temporaires et les fichiers objets générés par la compilation avec la commande: </p><div class="fragment"><div class="line">make clean</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
 Problèmes connus</h1>
 <p>Sous Linux, il est possible que la communication USB ne fonctionne pas (erreur 3 lors de l'ouverture du port). Le problème est lié au fait que lors de la connexion d'un périphérique FTDI, la plupart du temps, le driver <code>ftdi_sio</code> est chargé. Mais ce driver ne permet pas à la librairie <code>D2XX</code> de communiquer avec le périphérique.</p>
