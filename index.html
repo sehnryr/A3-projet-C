@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet A3: Supervision et regulation de la temperature d&#39;une habitation: Supervision et regulation de la temperature d&#39;une habitation</title>
+<title>Projet A3: Supervision et regulation de la temperature d&#39;une habitation: Projet A3 - C</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,14 +82,62 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Supervision et regulation de la temperature d'une habitation </div>  </div>
+<div class="title">Projet A3 - C </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> </p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> Ce projet concerne la partie C du projet de 3ème année de l'ISEN Ouest. Il a pour but de simuler la supervision et la regulation de la temperature d'une habitation.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Compilation</h1>
-<p>Pour compiler le mode simulation du projet, il faut utiliser la commande suivante: </p><div class="fragment"><div class="line">$ make simulation</div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+Table des matières</h1>
+<ul>
+<li><a href="#projet-a3---c">Projet A3 - C</a><ul>
+<li><a href="#table-des-matières">Table des matières</a></li>
+<li><a href="#prérequis">Prérequis</a></li>
+<li><a href="#utilisation">Utilisation</a></li>
+<li><a href="#problèmes-connus">Problèmes connus</a></li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Prérequis</h1>
+<p>Pour pouvoir utiliser ce projet, il est nécessaire d'avoir les outils suivants:</p><ul>
+<li><code>make</code></li>
+<li><code>gcc</code></li>
+<li><code>python3</code></li>
+<li><code>tkinter</code></li>
+</ul>
+<p>De plus, l'interface graphique python <code>gestiontemp.py</code> nécessite les dependances indiquées dans le fichier <code>Pipfile</code>. Il est possible de les installer avec la commande: </p><div class="fragment"><div class="line">pipenv install</div>
+<div class="line">pipenv shell # Pour activer l&#39;environnement virtuel</div>
+</div><!-- fragment --><p>Il est également possible d'installer les dependances python manuellement avec <code>pip</code> en lisant la section <code>[packages]</code> du fichier <code>Pipfile</code>.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Utilisation</h1>
+<p>Le projet est composé de 3 modes:</p><ul>
+<li>Simples autotests</li>
+<li>Simulation de l'habitation</li>
+<li>Communication avec une STM32</li>
+</ul>
+<p>Les parties simulation et communication nécessitent l'utilisation de l'interface graphique python <code>gestiontemp.py</code>.</p>
+<p>La partie autotests permet de tester les fonctions de bases du projet. </p><div class="fragment"><div class="line">make autotests</div>
+<div class="line">./build/test_autotests</div>
+</div><!-- fragment --><p>La partie simulation permet de simuler l'habitation et de tester les fonctions de supervision et de regulation. </p><div class="fragment"><div class="line">make simulation</div>
+<div class="line">./build/test_sim</div>
+</div><!-- fragment --><p>La partie communication permet de communiquer avec une STM32 pour tester les fonctions de supervision et de regulation. </p><div class="fragment"><div class="line">make usb</div>
+<div class="line">./build/test_usb</div>
+</div><!-- fragment --><p>Il est également possible de nettoyer le projet avec la commande: </p><div class="fragment"><div class="line">make clean</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Problèmes connus</h1>
+<p>Sous Linux, il est possible que la communication USB ne fonctionne pas (erreur 3 lors de l'ouverture du port). Le problème est lié au fait que lors de la connexion d'un périphérique FTDI, la plupart du temps, le driver <code>ftdi_sio</code> est chargé. Mais ce driver ne permet pas à la librairie <code>D2XX</code> de communiquer avec le périphérique.</p>
+<p>Une solution est d'ajouter les règles udev suivantes: </p><div class="fragment"><div class="line"># /etc/udev/rules.d/98-ftdi.rules</div>
+<div class="line">ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6015&quot;, ATTRS{product}==&quot;PRODUCT_NAME&quot;, \</div>
+<div class="line">RUN+=&quot;/bin/sh -c &#39;echo $kernel &gt; /sys/bus/usb/drivers/ftdi_sio/unbind&#39;&quot;</div>
+</div><!-- fragment --> <div class="fragment"><div class="line"># /etc/udev/rules.d/99-ftdi.rules</div>
+<div class="line">ATTRS{idVendor}==&quot;0403&quot;, ATTRS{idProduct}==&quot;6015&quot;, MODE=&quot;0666&quot;</div>
+</div><!-- fragment --><p>En modifiant les valeurs <code>idVendor</code>, <code>idProduct</code> et <code>product</code> en fonction du périphérique utilisé. Il est possible de trouver ces valeurs avec la commande: </p><div class="fragment"><div class="line">lsusb -v 2&gt; /dev/null | grep -a &quot;Bus ... Device ...:\|idVendor\|idProduct\|iProduct&quot;</div>
+</div><!-- fragment --><p>Pour recharger les règles udev, il faut exécuter la commande: </p><div class="fragment"><div class="line">sudo udevadm trigger</div>
+</div><!-- fragment --><p>Sources:</p><ul>
+<li><a href="https://stackoverflow.com/a/43514662/12619942">https://stackoverflow.com/a/43514662/12619942</a></li>
+<li><a href="https://www.elektormagazine.de/news/ftdi-d2xx-and-linux-overcoming-the-big-problem-">https://www.elektormagazine.de/news/ftdi-d2xx-and-linux-overcoming-the-big-problem-</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

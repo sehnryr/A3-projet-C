@@ -25,8 +25,11 @@
 var NAVTREE =
 [
   [ "Projet A3: Supervision et regulation de la temperature d'une habitation", "index.html", [
-    [ "Supervision et regulation de la temperature d'une habitation", "index.html", [
-      [ "Compilation", "index.html#autotoc_md1", null ]
+    [ "Projet A3 - C", "index.html", [
+      [ "Table des matières", "index.html#autotoc_md1", null ],
+      [ "Prérequis", "index.html#autotoc_md2", null ],
+      [ "Utilisation", "index.html#autotoc_md3", null ],
+      [ "Problèmes connus", "index.html#autotoc_md4", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Liste des classes", "annotated.html", "annotated_dup" ],
