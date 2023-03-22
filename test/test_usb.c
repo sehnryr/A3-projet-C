@@ -26,7 +26,7 @@ int main()
     temperature.interieure = 20.0;
 
     float thermostat = 0; // Consigne de température
-    float puissance = 20; // Puissance de chauffage
+    float puissance = 0;  // Puissance de chauffage
 
     // Régulation PID
     const int regul = PID;      // Type de régulation
