@@ -8,8 +8,7 @@ CC = gcc
 # -Wextra: Enable extra warnings
 # -std=c11: Use C11 standard
 # -O3: Optimize for speed
-# -Og: Optimize for debugging
-CFLAGS = -Wall -Wextra -std=c11 -O3 -Og
+CFLAGS = -Wall -Wextra -std=c11 -O3
 
 # Define the zip file name
 ZIP_FILE = sources_aa_ym.zip
