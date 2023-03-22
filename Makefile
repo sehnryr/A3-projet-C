@@ -20,6 +20,7 @@ OBJ_DIR = obj
 BUILD_DIR = build
 FTD2XX = libraries/ftd2xx
 
+# Define the ftd2xx library for Windows or Linux
 ifeq ($(OS),Windows_NT)
 	FTD2XX_LIB = $(FTD2XX)/amd64/ftd2xx.lib $(FTD2XX)/i386/ftd2xx.lib
 else
