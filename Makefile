@@ -54,7 +54,7 @@ init := @touch data.txt consigne.txt && \
 # Phony targets
 # This will prevent make from trying to build a file named after the argument
 # of the .PHONY directive
-.PHONY: clean autotests simulation zip
+.PHONY: clean autotests simulation usb zip
 
 # Clean the build directory
 clean:
