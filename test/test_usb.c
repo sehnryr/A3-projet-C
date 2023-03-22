@@ -44,7 +44,7 @@ int main()
     // Vérification de l'initialisation
     if (ftStatus != FT_OK)
     {
-        printf("Erreur d'initialisation de la communication USB ! (%d)\n", ftStatus);
+        printf("Erreur d'initialisation de la communication USB ! (%ld)\n", (unsigned long int)(ftStatus));
         return EXIT_FAILURE;
     }
 
@@ -97,7 +97,7 @@ int main()
     // Vérification de la fermeture
     if (ftStatus != FT_OK)
     {
-        printf("Erreur de fermeture de la communication USB ! (%d)\n", ftStatus);
+        printf("Erreur de fermeture de la communication USB ! (%ld)\n", (unsigned long int)(ftStatus));
         return EXIT_FAILURE;
     }
 
