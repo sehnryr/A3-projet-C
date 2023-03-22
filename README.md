@@ -61,7 +61,8 @@ make usb
 ./build/test_usb
 ```
 
-Il est également possible de nettoyer le projet avec la commande:
+Il est également possible de supprimer les fichiers temporaires et les fichiers
+objets générés par la compilation avec la commande:
 ```bash
 make clean
 ```
