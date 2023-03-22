@@ -39,10 +39,9 @@ int main()
         // Récupération de la consigne
         thermostat = consigne(thermostat);
 
+        // Arrêt de la boucle si la consigne est inférieure à 5°C
         if (thermostat <= 5)
-        {
             break;
-        }
 
         // Régulation PID
         puissance = regulation(
