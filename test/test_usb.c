@@ -16,6 +16,7 @@
 #include "ftd2xx.h"
 #include "commande.h"
 #include "releve.h"
+#include "sleep.h"
 
 int main()
 {
@@ -25,7 +26,7 @@ int main()
     temperature.interieure = 20.0;
 
     float thermostat = 0; // Consigne de température
-    float puissance = 0;  // Puissance de chauffage
+    float puissance = 20; // Puissance de chauffage
 
     // Régulation PID
     const int regul = PID;      // Type de régulation
@@ -86,6 +87,9 @@ int main()
 
         // Visualisation de la température
         visualisationT(temperature);
+
+        // Echantillonnage toutes les 40ms
+        msleep(40);
     }
 
     // Mise de la puissance à 0 pour arrêter le chauffage
