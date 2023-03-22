@@ -30,6 +30,8 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
 
         if (ftStatus == FT_OK)
         {
+            unsigned char octets_lus = 0;
+
             // FT_Read OK
             for (int i = 0; i < BytesReceived; i++)
             {
@@ -37,26 +39,32 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
                 {
                 case 0b0000: // 1er octet de la température extérieur
                     SOT_ext |= (RxBuffer[i] & 0xF);
+                    octets_lus += 1;
                     break;
 
                 case 0b0001: // 2eme octet de la température extérieur
                     SOT_ext |= (RxBuffer[i] & 0xF) << 4;
+                    octets_lus += 1;
                     break;
 
                 case 0b0100: // 3eme octet de la température extérieur
                     SOT_ext |= (RxBuffer[i] & 0xF) << 8;
+                    octets_lus += 1;
                     break;
 
                 case 0b1000: // 1er octet de la température intérieur
                     SOT_int |= (RxBuffer[i] & 0xF);
+                    octets_lus += 1;
                     break;
 
                 case 0b1001: // 2eme octet de la température intérieur
                     SOT_int |= (RxBuffer[i] & 0xF) << 4;
+                    octets_lus += 1;
                     break;
 
                 case 0b1100: // 3eme octet de la température intérieur
                     SOT_int |= (RxBuffer[i] & 0xF) << 8;
+                    octets_lus += 1;
                     break;
 
                 default:
@@ -74,7 +82,8 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
                 temp_ext_absolu >= 0 &&
                 temp_int_absolu >= 0 &&
                 temp_ext_absolu <= 40 &&
-                temp_int_absolu <= 40)
+                temp_int_absolu <= 40 &&
+                octets_lus == 6)
             {
                 // Si les données sont valides, on les enregistre
                 temp->exterieure = temp_ext_absolu;
