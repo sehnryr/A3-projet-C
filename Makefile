@@ -11,6 +11,9 @@ CC = gcc
 # -Og: Optimize for debugging
 CFLAGS = -Wall -Wextra -std=c11 -O3 -Og
 
+# Define the zip file name
+ZIP_FILE = sources_aa_ym.zip
+
 # Define the directories
 SRC_DIR = src
 INCLUDE_DIR = include
@@ -55,7 +58,7 @@ init := @touch data.txt consigne.txt && \
 
 # Clean the build directory
 clean:
-	rm -rf $(OBJ_DIR) $(BUILD_DIR) sources_aa_ym.zip \
+	rm -rf $(OBJ_DIR) $(BUILD_DIR) $(ZIP_FILE) \
 	data.txt consigne.txt .verrouData .verrouConsigne trace.txt
 
 # Build the autotests executable
@@ -84,10 +87,4 @@ usb: $(BUILD_DIR)/test_usb \
 
 # Build the zip file for the submission of the project
 zip:
-	@zip -r sources_aa_ym.zip \
-	include \
-	libraries \
-	src \
-	test \
-	Makefile \
-	README.md
+	@zip -r $(ZIP_FILE) include libraries src test Makefile README.md
