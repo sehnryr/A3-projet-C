@@ -33,7 +33,7 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
             unsigned char octets_lus = 0;
 
             // FT_Read OK
-            for (int i = 0; i < BytesReceived; i++)
+            for (unsigned int i = 0; i < (unsigned int)BytesReceived; i++)
             {
                 switch ((RxBuffer[i] & 0xF0) >> 4)
                 {
