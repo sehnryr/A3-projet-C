@@ -92,11 +92,11 @@ $(document).ready(function(){initNavTree('releve_8h_source.html',''); initResiza
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef RELEVE_H</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define RELEVE_H</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="structtemp__t.html">temp_t</a> <a class="code" href="releve_8h.html#af2c846a3e49fdc3a65ebfb9fe625201c">releve</a>(FT_HANDLE ftHandle, <span class="keywordtype">float</span> ancien_temp_ext, <span class="keywordtype">float</span> ancien_temp_int);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// RELEVE_H</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;FT_STATUS <a class="code" href="releve_8h.html#a9fd46bf97813ccdd5b3f618752e53124">releve</a>(FT_HANDLE ftHandle, <a class="code" href="structtemp__t.html">temp_t</a> *temp);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// RELEVE_H</span></div>
 <div class="ttc" id="adefine_8h_html"><div class="ttname"><a href="define_8h.html">define.h</a></div><div class="ttdoc">Définition des structures de données.</div></div>
-<div class="ttc" id="areleve_8h_html_af2c846a3e49fdc3a65ebfb9fe625201c"><div class="ttname"><a href="releve_8h.html#af2c846a3e49fdc3a65ebfb9fe625201c">releve</a></div><div class="ttdeci">temp_t releve(FT_HANDLE ftHandle, float ancien_temp_ext, float ancien_temp_int)</div><div class="ttdoc">Releve la temperature via la liaison USB.</div><div class="ttdef"><b>Definition:</b> releve.c:11</div></div>
+<div class="ttc" id="areleve_8h_html_a9fd46bf97813ccdd5b3f618752e53124"><div class="ttname"><a href="releve_8h.html#a9fd46bf97813ccdd5b3f618752e53124">releve</a></div><div class="ttdeci">FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)</div><div class="ttdoc">Releve la temperature via la liaison USB.</div><div class="ttdef"><b>Definition:</b> releve.c:11</div></div>
 <div class="ttc" id="astructtemp__t_html"><div class="ttname"><a href="structtemp__t.html">temp_t</a></div><div class="ttdoc">Structure de données pour la température.</div><div class="ttdef"><b>Definition:</b> define.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

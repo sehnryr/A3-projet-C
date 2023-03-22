@@ -94,9 +94,9 @@ $(document).ready(function(){initNavTree('releve_8c.html',''); initResizable(); 
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:af2c846a3e49fdc3a65ebfb9fe625201c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtemp__t.html">temp_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="releve_8c.html#af2c846a3e49fdc3a65ebfb9fe625201c">releve</a> (FT_HANDLE ftHandle, float ancien_temp_ext, float ancien_temp_int)</td></tr>
-<tr class="memdesc:af2c846a3e49fdc3a65ebfb9fe625201c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releve la temperature via la liaison USB.  <a href="releve_8c.html#af2c846a3e49fdc3a65ebfb9fe625201c">Plus de détails...</a><br /></td></tr>
-<tr class="separator:af2c846a3e49fdc3a65ebfb9fe625201c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd46bf97813ccdd5b3f618752e53124"><td class="memItemLeft" align="right" valign="top">FT_STATUS&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="releve_8c.html#a9fd46bf97813ccdd5b3f618752e53124">releve</a> (FT_HANDLE ftHandle, <a class="el" href="structtemp__t.html">temp_t</a> *temp)</td></tr>
+<tr class="memdesc:a9fd46bf97813ccdd5b3f618752e53124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releve la temperature via la liaison USB.  <a href="releve_8c.html#a9fd46bf97813ccdd5b3f618752e53124">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9fd46bf97813ccdd5b3f618752e53124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fonction de releve de la temperature via la liaison USB. </p>
@@ -106,14 +106,14 @@ Fonctions</h2></td></tr>
 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-03-20 </dd></dl>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
-<a id="af2c846a3e49fdc3a65ebfb9fe625201c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2c846a3e49fdc3a65ebfb9fe625201c">&#9670;&nbsp;</a></span>releve()</h2>
+<a id="a9fd46bf97813ccdd5b3f618752e53124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fd46bf97813ccdd5b3f618752e53124">&#9670;&nbsp;</a></span>releve()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structtemp__t.html">temp_t</a> releve </td>
+          <td class="memname">FT_STATUS releve </td>
           <td>(</td>
           <td class="paramtype">FT_HANDLE&#160;</td>
           <td class="paramname"><em>ftHandle</em>, </td>
@@ -121,14 +121,8 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>ancien_temp_ext</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>ancien_temp_int</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structtemp__t.html">temp_t</a> *&#160;</td>
+          <td class="paramname"><em>temp</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -142,12 +136,11 @@ Fonctions</h2></td></tr>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">ftHandle</td><td>Le handle de la liaison USB </td></tr>
-    <tr><td class="paramname">ancien_temp_ext</td><td>Temperature exterieure </td></tr>
-    <tr><td class="paramname">ancien_temp_int</td><td>Temperature interieure </td></tr>
+    <tr><td class="paramname">temp</td><td>La temperature interieure et exterieure relevee </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd><a class="el" href="structtemp__t.html" title="Structure de données pour la température.">temp_t</a> La temperature interieure et exterieure relevee </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Le status du releve </dd></dl>
 
 </div>
 </div>
