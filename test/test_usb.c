@@ -74,7 +74,7 @@ int main()
         commande(ftHandle, puissance);
 
         // Récupération de la température
-        temperature = releve(ftHandle);
+        temperature = releve(ftHandle, temperature.interieure, temperature.exterieure);
 
         // Visualisation de la consigne
         visualisationC(puissance);
