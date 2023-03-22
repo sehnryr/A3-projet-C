@@ -6,11 +6,10 @@ CC = gcc
 # Compiler flags
 # -Wall: Enable all warnings
 # -Wextra: Enable extra warnings
-# -pedantic: Enable pedantic warnings
 # -std=c11: Use C11 standard
 # -O3: Optimize for speed
 # -Og: Optimize for debugging
-CFLAGS = -Wall -Wextra -pedantic -std=c11 -O3 -Og
+CFLAGS = -Wall -Wextra -std=c11 -O3 -Og
 
 # Define the directories
 SRC_DIR = src
