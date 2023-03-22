@@ -36,12 +36,15 @@ int main()
     // Initialisation de la communication USB
     FT_HANDLE ftHandle;
     FT_STATUS ftStatus;
-    ftStatus = FT_Open(0, &ftHandle); // Might use FT_OpenEx() instead
+    ftStatus = FT_OpenEx(
+        "FT231X USB UART",
+        FT_OPEN_BY_DESCRIPTION,
+        &ftHandle);
 
     // Vérification de l'initialisation
     if (ftStatus != FT_OK)
     {
-        printf("Erreur d'initialisation de la communication USB !\n");
+        printf("Erreur d'initialisation de la communication USB ! (%d)\n", ftStatus);
         return EXIT_FAILURE;
     }
 
@@ -94,7 +97,7 @@ int main()
     // Vérification de la fermeture
     if (ftStatus != FT_OK)
     {
-        printf("Erreur de fermeture de la communication USB !\n");
+        printf("Erreur de fermeture de la communication USB ! (%d)\n", ftStatus);
         return EXIT_FAILURE;
     }
 
