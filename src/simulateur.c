@@ -1,11 +1,5 @@
 #include "simulateur.h"
-
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#define __USE_XOPEN_EXTENDED
-#include <unistd.h>
-#endif
+#include "sleep.h"
 
 #define CTH 73746.9
 #define RGF_A 0.00686
@@ -14,15 +8,6 @@
 #define PUISS_MAX 3200
 #define DELTA_T 10.0
 #define DELTA_T_SIM_MS 4
-
-void msleep(int ms)
-{
-#ifdef _WIN32
-    Sleep(ms);
-#else
-    usleep(ms * 1000);
-#endif
-}
 
 /*******************************/
 /* Construction des parametres	*/
