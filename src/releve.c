@@ -92,5 +92,8 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
         }
     }
 
+    // Purge de la liaison USB pour éviter les erreurs
+    ftStatus = FT_Purge(ftHandle, FT_PURGE_RX | FT_PURGE_TX);
+
     return ftStatus;
 }
