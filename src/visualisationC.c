@@ -19,7 +19,6 @@ void visualisationC(float puissance_f)
     // d'utilisation par un autre programme, retour de la fonction.
     if (access(".verrouData", F_OK) != -1)
     {
-        // printf("Impossible d'ouvrir data.txt, le fichier est en cours d'utilisation.\n");
         return;
     }
     // Sinon, création d'un fichier .verrouData qui indique que le fichier
