@@ -9,6 +9,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "regulation.h", "regulation_8h.html", "regulation_8h" ],
     [ "releve.h", "releve_8h.html", "releve_8h" ],
     [ "simulateur.h", "simulateur_8h_source.html", null ],
+    [ "sleep.h", "sleep_8h_source.html", null ],
     [ "visualisationC.h", "visualisationC_8h.html", "visualisationC_8h" ],
     [ "visualisationT.h", "visualisationT_8h.html", "visualisationT_8h" ]
 ];
