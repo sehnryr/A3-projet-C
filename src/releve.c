@@ -93,8 +93,8 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
             }
 
             // Calcul de la température absolue en °C
-            float temp_ext_absolu = -39.64 + 0.04 * (SOT_ext);
-            float temp_int_absolu = -39.64 + 0.04 * (SOT_int);
+            float temp_ext_absolu = (4 * SOT_ext - 3964) / 100;
+            float temp_int_absolu = (4 * SOT_int - 3964) / 100;
 
             // Verification de la validité des données
             if (octets_lus == 6)
