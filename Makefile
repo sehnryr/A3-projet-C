@@ -28,7 +28,7 @@ else
 endif
 
 # Define the base objects that are shared between the executables
-BASE_OBJ = $(OBJ_DIR)/consigne.o $(OBJ_DIR)/regulation.o \
+BASE_OBJ = $(OBJ_DIR)/consigne.o \
 		$(OBJ_DIR)/visualisationC.o $(OBJ_DIR)/visualisationT.o
 
 # Create the build directory when a prequisite calls for it
@@ -65,6 +65,7 @@ clean:
 autotests: $(BUILD_DIR)/test_autotests \
 		$(BASE_OBJ) \
 		$(OBJ_DIR)/autotests.o \
+		$(SRC_DIR)/regulation.c \
 		test/test_autotests.c
 	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR)
 
@@ -72,6 +73,7 @@ autotests: $(BUILD_DIR)/test_autotests \
 simulation: $(BUILD_DIR)/test_sim \
 		$(BASE_OBJ) \
 		$(OBJ_DIR)/simulateur.o \
+		$(SRC_DIR)/regulation.c \
 		test/test_sim.c
 	$(init)
 	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR)
@@ -81,9 +83,10 @@ simulation: $(BUILD_DIR)/test_sim \
 usb: $(BUILD_DIR)/test_usb \
 		$(BASE_OBJ) \
 		$(OBJ_DIR)/commande.o $(OBJ_DIR)/releve.o \
+		$(SRC_DIR)/regulation.c \
 		test/test_usb.c
 	$(init)
-	$(CC) $(CFLAGS) -o $^ -I$(INCLUDE_DIR) -I$(FTD2XX) $(FTD2XX_LIB)
+	$(CC) $(CFLAGS) -DUSB -o $^ -I$(INCLUDE_DIR) -I$(FTD2XX) $(FTD2XX_LIB)
 
 # Build the zip file for the submission of the project
 zip:

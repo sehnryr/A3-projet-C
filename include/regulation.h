@@ -14,7 +14,7 @@
 #define REGULATION_H
 
 // En mode simulation, le pas de régulation est de 10 secondes au lieu de 100
-#ifndef SIMULATEUR_H
+#ifdef USB
 #define DELTA_T 100.0 ///< Durée d'un pas de régulation en secondes
 #else
 #define DELTA_T 10.0 ///< Durée d'un pas de régulation en secondes
