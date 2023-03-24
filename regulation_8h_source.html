@@ -94,10 +94,10 @@ $(document).ready(function(){initNavTree('regulation_8h_source.html',''); initRe
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define REGULATION_H</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// En mode simulation, le pas de régulation est de 10 secondes au lieu de 100</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef SIMULATEUR_H</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="regulation_8h.html#a5400b1f2028d38732e4377be4f32b255">   18</a></span>&#160;<span class="preprocessor">#define DELTA_T 100.0 </span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifdef USB</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define DELTA_T 100.0 </span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define DELTA_T 10.0 </span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="regulation_8h.html#a5400b1f2028d38732e4377be4f32b255">   20</a></span>&#160;<span class="preprocessor">#define DELTA_T 10.0 </span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="regulation_8h.html#a75bcee4b28157d51fa12c57a1a5d321a">   23</a></span>&#160;<span class="preprocessor">#define Kp 1.1  </span></div>
