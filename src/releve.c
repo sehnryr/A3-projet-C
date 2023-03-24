@@ -39,34 +39,52 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
             {
                 switch ((RxBuffer[i] & 0xF0) >> 4)
                 {
-                case 0b0000: // 1er octet de la température extérieur
-                    SOT_ext |= (RxBuffer[i] & 0xF);
-                    octets_lus += 1;
+                case 0b0000:             // 1er octet de la température extérieur
+                    if (octets_lus == 0) // 1er octer de la trame
+                    {
+                        SOT_ext |= (RxBuffer[i] & 0xF);
+                        octets_lus += 1;
+                    }
                     break;
 
-                case 0b0001: // 2eme octet de la température extérieur
-                    SOT_ext |= (RxBuffer[i] & 0xF) << 4;
-                    octets_lus += 1;
+                case 0b0001:             // 2eme octet de la température extérieur
+                    if (octets_lus == 1) // 2eme octet de la trame
+                    {
+                        SOT_ext |= (RxBuffer[i] & 0xF) << 4;
+                        octets_lus += 1;
+                    }
                     break;
 
-                case 0b0100: // 3eme octet de la température extérieur
-                    SOT_ext |= (RxBuffer[i] & 0xF) << 8;
-                    octets_lus += 1;
+                case 0b0100:             // 3eme octet de la température extérieur
+                    if (octets_lus == 2) // 3eme octet de la trame
+                    {
+                        SOT_ext |= (RxBuffer[i] & 0xF) << 8;
+                        octets_lus += 1;
+                    }
                     break;
 
-                case 0b1000: // 1er octet de la température intérieur
-                    SOT_int |= (RxBuffer[i] & 0xF);
-                    octets_lus += 1;
+                case 0b1000:             // 1er octet de la température intérieur
+                    if (octets_lus == 3) // 4eme octet de la trame
+                    {
+                        SOT_int |= (RxBuffer[i] & 0xF);
+                        octets_lus += 1;
+                    }
                     break;
 
-                case 0b1001: // 2eme octet de la température intérieur
-                    SOT_int |= (RxBuffer[i] & 0xF) << 4;
-                    octets_lus += 1;
+                case 0b1001:             // 2eme octet de la température intérieur
+                    if (octets_lus == 4) // 5eme octet de la trame
+                    {
+                        SOT_int |= (RxBuffer[i] & 0xF) << 4;
+                        octets_lus += 1;
+                    }
                     break;
 
-                case 0b1100: // 3eme octet de la température intérieur
-                    SOT_int |= (RxBuffer[i] & 0xF) << 8;
-                    octets_lus += 1;
+                case 0b1100:             // 3eme octet de la température intérieur
+                    if (octets_lus == 5) // 6eme octet de la trame
+                    {
+                        SOT_int |= (RxBuffer[i] & 0xF) << 8;
+                        octets_lus += 1;
+                    }
                     break;
 
                 default:
@@ -86,6 +104,8 @@ FT_STATUS releve(FT_HANDLE ftHandle, temp_t *temp)
                 temp->interieure = temp_int_absolu;
             }
         }
+
+        free(RxBuffer);
     }
 
     return ftStatus;
