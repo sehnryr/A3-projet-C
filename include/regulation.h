@@ -16,13 +16,17 @@
 // En mode simulation, le pas de régulation est de 10 secondes au lieu de 100
 #ifdef USB
 #define DELTA_T 100.0 ///< Durée d'un pas de régulation en secondes
+
+#define Kp 1.1    ///< Coefficient du terme proportionnel du PID
+#define Ki 0.002  ///< Coefficient du terme intégral du PID
+#define Kd 0.0015 ///< Coefficient du terme dérivé du PID
 #else
 #define DELTA_T 10.0 ///< Durée d'un pas de régulation en secondes
-#endif
 
 #define Kp 1.1  ///< Coefficient du terme proportionnel du PID
 #define Ki 0.2  ///< Coefficient du terme intégral du PID
 #define Kd 0.15 ///< Coefficient du terme dérivé du PID
+#endif
 
 /// @brief Type d'une consigne
 enum REGULATION_TYPE
